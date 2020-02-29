@@ -4,16 +4,15 @@ require_relative '../helper/create_bitbucket_pull_request_helper'
 module Fastlane
   module Actions
     class CreateBitbucketPullRequestAction < Action
-      def self.run(params)
-        UI.message("The create_bitbucket_pull_request plugin is working!")
+      def self.run(_params)
       end
 
       def self.description
-        "This lane creates create bitbucket pull request"
+        'This lane creates create bitbucket pull request'
       end
 
       def self.authors
-        ["Issarapong Poesua"]
+        ['Issarapong Poesua']
       end
 
       def self.return_value
@@ -22,7 +21,7 @@ module Fastlane
 
       def self.details
         # Optional:
-        "This lane creates create bitbucket pull request"
+        'This lane creates create bitbucket pull request'
       end
 
       def self.available_options
@@ -35,7 +34,7 @@ module Fastlane
         ]
       end
 
-      def self.is_supported?(platform)
+      def self.is_supported?(_platform)
         # Adjust this if your plugin only works for a particular platform (iOS vs. Android, for example)
         # See: https://docs.fastlane.tools/advanced/#control-configuration-by-lane-and-by-platform
         #
