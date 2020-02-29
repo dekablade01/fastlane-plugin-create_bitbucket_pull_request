@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'dekablade01@gmail.com'
 
   spec.summary       = 'This lane creates create bitbucket pull request'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-create_bitbucket_pull_request"
+  spec.homepage      = "https://github.com/dekablade01/fastlane-plugin-create_bitbucket_pull_request"
   spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/*'] + %w[README.md LICENSE]
