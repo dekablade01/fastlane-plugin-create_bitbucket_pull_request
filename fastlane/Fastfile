@@ -1,3 +1,10 @@
 lane :test do
-  create_bitbucket_pull_request
+  create_bitbucket_pull_request(
+    head: 'any-branch',
+    target: 'master',
+    owner: 'dekablade01',
+    repository: 'portfolio',
+    title: 'title',
+    description: 'description'
+  )
 end
