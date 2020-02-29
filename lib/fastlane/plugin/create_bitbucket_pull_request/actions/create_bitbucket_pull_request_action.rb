@@ -1,10 +1,33 @@
 require 'fastlane/action'
 require_relative '../helper/create_bitbucket_pull_request_helper'
+require 'net/http'
+require 'uri'
+require 'json'
 
 module Fastlane
   module Actions
     class CreateBitbucketPullRequestAction < Action
       def self.run(_params)
+        UI.message("Creating new bitbucket pull request from '#{_params[:head]}' to branch '#{_params[:target]}' of '#{_params[:owner]}/#{_params[:repository]}'")
+        response = JSON.parse(Net::HTTP.post(
+          URI("https://api.bitbucket.org/2.0/repositories/#{_params[:owner]}/#{_params[:repository]}/pullrequests"),
+          {
+            "destination": { "branch": { "name": _params[:target] } },
+            "source": { "branch": { "name": _params[:head] } },
+            "title": _params[:title],
+            "description": _params[:description]
+          }.to_json,
+          "Authorization": "Basic #{Base64.encode64("#{_params[:username]}:#{_params[:password]}").gsub("\n", '')}",
+          "Content-Type": 'application/json'
+        ).body)
+
+        if response['error']
+          raise(UI.message(response['error']['message']))
+        else
+          UI.message('The pull request has been created successfully')
+          UI.message("#{response['links']['html']['href']}")
+          response['links']['html']['href']
+        end
       end
 
       def self.description
