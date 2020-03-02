@@ -22,7 +22,7 @@ module Fastlane
         ).body)
 
         if response['error']
-          raise(UI.message(response['error']['message']))
+          raise(response['error']['message'])
         else
           UI.message('The pull request has been created successfully')
           UI.message("#{response['links']['html']['href']}")
