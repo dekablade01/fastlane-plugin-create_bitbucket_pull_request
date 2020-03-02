@@ -7,17 +7,17 @@ require 'json'
 module Fastlane
   module Actions
     class CreateBitbucketPullRequestAction < Action
-      def self.run(_params)
-        UI.message("Creating new bitbucket pull request from '#{_params[:head]}' to branch '#{_params[:target]}' of '#{_params[:owner]}/#{_params[:repository]}'")
+      def self.run(params)
+        UI.message("Creating new bitbucket pull request from '#{params[:head]}' to branch '#{params[:target]}' of '#{params[:owner]}/#{params[:repository]}'")
         response = JSON.parse(Net::HTTP.post(
-          URI("https://api.bitbucket.org/2.0/repositories/#{_params[:owner]}/#{_params[:repository]}/pullrequests"),
+          URI("https://api.bitbucket.org/2.0/repositories/#{params[:owner]}/#{params[:repository]}/pullrequests"),
           {
-            "destination": { "branch": { "name": _params[:target] } },
-            "source": { "branch": { "name": _params[:head] } },
-            "title": _params[:title],
-            "description": _params[:description]
+            "destination": { "branch": { "name": params[:target] } },
+            "source": { "branch": { "name": params[:head] } },
+            "title": params[:title],
+            "description": params[:description]
           }.to_json,
-          "Authorization": "Basic #{Base64.encode64("#{_params[:username]}:#{_params[:password]}").gsub("\n", '')}",
+          "Authorization": "Basic #{Base64.encode64("#{params[:username]}:#{params[:password]}").gsub("\n", '')}",
           "Content-Type": 'application/json'
         ).body)
 
@@ -25,7 +25,7 @@ module Fastlane
           raise(response['error']['message'])
         else
           UI.message('The pull request has been created successfully')
-          UI.message("#{response['links']['html']['href']}")
+          UI.message((response['links']['html']['href']).to_s)
           response['links']['html']['href']
         end
       end
