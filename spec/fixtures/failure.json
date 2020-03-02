@@ -1,0 +1,11 @@
+{
+    "type": "error",
+    "error": {
+        "fields": {
+            "destination": [
+                "branch not found: mster"
+            ]
+        },
+        "message": "destination: branch not found: mster"
+    }
+}
