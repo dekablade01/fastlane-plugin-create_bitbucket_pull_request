@@ -20,6 +20,19 @@ This lane creates create bitbucket pull request
 
 Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
 
+## Options
+
+| Key         | Description                                                       | ENV VARIABLE                                   | Default |
+|-------------|-------------------------------------------------------------------|------------------------------------------------|---------|
+| head        | The name of the branch where your changes are implemented         | CREATE_BITBUCKET_PULL_REQUEST_HEAD             |         |
+| target      | The name of the branch you want your changes pulled into          | CREATE_BITBUCKET_PULL_REQUEST_TARGET           |         |
+| owner       | The name of the repository owner (slug)                           | CREATE_BITBUCKET_PULL_REQUEST_REPOSITORY_OWNER |         |
+| repository  | The name of the repository you want to submit the pull request to | CREATE_BITBUCKET_PULL_REQUEST_REPOSITORY_NAME  |         |
+| title       | The title of the pull request                                     | CREATE_BITBUCKET_PULL_REQUEST_TITLE            |         |
+| description | The contents of the pull request                                  | CREATE_BITBUCKET_PULL_REQUEST_DESCRIPTION      |         |
+| username    | The Bitbucket username (email)                                    | CREATE_BITBUCKET_PULL_REQUEST_USERNAME         |         |
+| password    | The Bitbucket password                                            | CREATE_BITBUCKET_PULL_REQUEST_PASSWORD         |         |
+
 **Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
 
 ## Run tests for this plugin
